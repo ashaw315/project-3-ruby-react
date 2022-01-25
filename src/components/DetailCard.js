@@ -5,7 +5,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function DetailCard(){
@@ -44,7 +44,7 @@ function DetailCard(){
     </div>
   </section>
     )
-
+    }
   export default DetailCard 
 
 
@@ -56,5 +56,3 @@ function DetailCard(){
 
 
 
-    )
-}

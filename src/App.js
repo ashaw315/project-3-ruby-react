@@ -6,6 +6,8 @@ import Calendar from './components/Calendar';
 import Chat from './components/Chat';
 import Home from './components/Home';
 import Listings from './components/Listings';
+import DetailCard from '/components/DetailCard';
+
 import './App.css';
 
 function App() {
@@ -49,7 +51,7 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/profile" element={<Profile userData={userData} />} />
-        <Route path="/listings/:id" element={<DetailCard />}
+        <Route path="/listings/:id" element={<DetailCard />} />
         </Routes>
         </div>
   )
