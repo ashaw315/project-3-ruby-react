@@ -50,11 +50,9 @@ function App() {
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/profile" element={<Profile userData={userData} />} />
         <Route path="/listings/:id" element={<DetailCard />}
-      </Routes>
-
-      
-    </div>
-  );
+        </Routes>
+        </div>
+  )
 }
 
 export default App;
