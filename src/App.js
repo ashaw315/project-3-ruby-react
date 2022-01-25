@@ -6,45 +6,42 @@ import Calendar from './components/Calendar';
 import Chat from './components/Chat';
 import Home from './components/Home';
 import Listings from './components/Listings';
+import DetailCard from './components/DetailCard';
 import './App.css';
 
 
 function App() {
+  const [listings, setListings] = useState([])
+ 
 
-  const [userData, setUserData] = useState([])
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
+  // useEffect(() => {
+  //   fetch('http://localhost:9292/users')
+  //     .then((r) => r.json())
+  //     .then((userData) => setUserData(userData))
+  // },[])
 
   useEffect(() => {
-    fetch('http://localhost:9292/users')
+    fetch('http://localhost:9292/listings')
       .then((r) => r.json())
-      .then((userData) => setUserData(userData))
+      .then((listings) => setListings(listings))
   },[])
-
-  function handleLogin(name, password, status){
-    setUserName(name)
-    setLoggedIn(status)
-    setPassword(password)
-  }
-
   
   return (
     <div className="App">
       <Navbar/>
       <Routes>
         <Route/>
-        <Route path="/" element={
-        <Home handleLogin={handleLogin} userData={userData} />} /> 
-        <Route path="/listings" element={<Listings />} />
+        <Route path="/" element={<Home />} /> 
+        <Route path="/listings" element={<Listings listings={listings}/>} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/listings/:id" element={<DetailCard />} />
       </Routes>
-
-      
     </div>
   );
 }
+
+
 
 export default App;
