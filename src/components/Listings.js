@@ -1,10 +1,10 @@
 import React from "react";
 import Card from './Card'
 
-function Listings({ listings }) {
+function Listings({ listings, handleBookmarked, onAdd }) {
 
 const mappedListings = listings.map((list) => {
-    return <Card list={list} key={list.id}/>
+    return <Card list={list} key={list.id} handleBookmarked={handleBookmarked} onAdd={onAdd}/>
 })
     return (
         <div>
