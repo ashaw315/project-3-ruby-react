@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Card from './Card'
 
-function Listings() {
-const [listings, setListings] = useState([])
-const [formData, setFormData] = useState({
-    job_title: "",
-    job_description: "",
-    hourly_rate: 0,
-    start_date: Date.new,
-    end_date: Date.new,
-    hired: false
+function Listings({ listings, handleBookmarked, onAdd }) {
+
+<<<<<<< HEAD
+=======
+const mappedListings = listings.map((list) => {
+    return <Card list={list} key={list.id} handleBookmarked={handleBookmarked} onAdd={onAdd}/>
 })
 
+>>>>>>> d28d3e4cc7c7086e3bba80a5a791b076009512b4
 const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value})
 }
