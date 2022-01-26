@@ -7,6 +7,7 @@ import Chat from './components/Chat';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import DetailCard from './components/DetailCard';
+import UserCard from './components/UserCard';
 import './App.css';
 
 
@@ -21,6 +22,7 @@ function App() {
   //     .then((userData) => setUserData(userData))
   // },[])
 
+  // *** Get Listings ***
   useEffect(() => {
     fetch('http://localhost:9292/listings')
       .then((r) => r.json())
@@ -57,12 +59,13 @@ const onAdd = (listings) => {
       <Navbar/>
       <Routes>
         <Route/>
+        <Route path="/users/:id" element={<UserCard />} />
+        <Route path="/listings/:id" element={<DetailCard listings={listings}/>} />
         <Route path="/" element={<Home />} /> 
         <Route path="/listings" element={<Listings listings={listings} onAdd={onAdd}/>} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/calendar" element={<CalendarComp eventItems={eventItems} onAdd={onAdd}/>} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/listings/:id" element={<DetailCard />} />
       </Routes>
     </div>
   );
