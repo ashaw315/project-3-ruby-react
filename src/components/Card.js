@@ -7,6 +7,9 @@ const { job_title, hourly_rate, start_date, end_date, id, hired } = list
 
 const path = `/listings/${id}`;
 
+function Card({ list, handleBookmarked, onAdd }){
+const { job_title, hourly_rate, start_date, end_date } = list
+
     return (
         <div>
             <h2>{job_title}</h2>
@@ -22,8 +25,10 @@ const path = `/listings/${id}`;
                 <button> See Details </button>
             </Link>
             
+            <button onClick={() => onAdd(list)}> Bookmark </button>
+            <button> See Details </button>
         </div>
-    )
+    )}
 }
 
 export default Card;
