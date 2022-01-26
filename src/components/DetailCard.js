@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 function DetailCard(){
 const [listing, setListing] = useState(null)
 const [isLoaded, setIsLoaded] = useState(false);
+// const [applicants, setApplicants] = useState(null)
 
 const { id } = useParams();
 
@@ -23,11 +24,20 @@ const { id } = useParams();
     });
 }, [id]);
 
+// useEffect(() => {
+//   fetch(`http://localhost:9292/applicants/${id}`)
+//   .then((r) => r.json())
+//   .then((applicants) => {
+//       setApplicants(applicants);
+//   });
+// }, [id]);
 
 
 if (!isLoaded) return <h2>Loading...</h2>;
 
 const {job_title, hourly_rate, start_date, end_date, job_description, reviews, rating} = listing
+
+// const { user_id } = applicants
 
 console.log(listing)
 
@@ -90,7 +100,7 @@ const all_reviews = listing.reviews.map((review) => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <p>placeholder</p>  
+                <p>asd</p>  
               </Typography>
             </AccordionDetails>
            </Accordion>

@@ -12,10 +12,6 @@ const [formData, setFormData] = useState({
     hired: false
 })
 
-const mappedListings = listings.map((list) => {
-    return <Card list={list} key={list.id}/>
-})
-
 const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value})
 }
@@ -46,7 +42,21 @@ const postListing = (listing) => {
     })
 }
 
+const handleDelete = (id) => {
+    fetch(`http://localhost:9292/listings/${id}`, {
+        method: 'DELETE'
+    })
+    .then(r => r.json())
+    .then(data => {
+        setListings(listings.filter(l => l.id !== id))
+    })
+}
 
+
+
+const mappedListings = listings.map((list) => {
+    return <Card list={list} key={list.id} handleDelete={handleDelete}/>
+})
 
 
     return (
@@ -101,8 +111,8 @@ const postListing = (listing) => {
                     Hired:
                     <select name="hired" value={formData.hired} onChange={handleChange}>
                         <option>Select Hired</option>
-                        <option>True</option>
-                        <option>False</option>
+                        <option value={true}>True</option>
+                        <option value={false}>False</option>
                     </select>
                     </label>
                     <input type="submit" value="Submit" />

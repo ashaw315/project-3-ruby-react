@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-function Card({ list }){
+function Card({ list, handleDelete }){
     
 const { job_title, hourly_rate, start_date, end_date, id, hired } = list
 
@@ -13,10 +13,10 @@ const path = `/listings/${id}`;
             <p>${hourly_rate}</p>
             <p>{start_date}</p>
             <p>{end_date}</p>
-            <p>{hired ? "true" : "false"}</p>
+            <p>{hired ? "Position Filled" : "Position Open"}</p>
             <button> Apply </button>
             <button> Bookmark in Calendar </button>
-            <button> Delete </button>
+            <button onClick={() => handleDelete(id)}> Delete </button>
             <button> Position Open </button>
             <Link to={path}>
                 <button> See Details </button>
