@@ -12,6 +12,7 @@ const [formData, setFormData] = useState({
     hired: false
 })
 
+
 const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value})
 }
@@ -52,10 +53,29 @@ const handleDelete = (id) => {
     })
 }
 
+const patchListing = (listing) => {
+    fetch(`http://localhost:9292/listings/${listing.id}`, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json",
+        }, 
+        body: JSON.stringify({...listing, hired:false})
+    })
+    .then(r => r.json())
+    .then(data => {
+        setListings(listings.map(l => {
+            if(listing.id === data.id){
+                return data
+            } else {
+                return l
+            }
+        }))
+    })
+} 
 
 
 const mappedListings = listings.map((list) => {
-    return <Card list={list} key={list.id} handleDelete={handleDelete} onAdd={onAdd}/>
+    return <Card list={list} key={list.id} handleDelete={handleDelete} onAdd={onAdd} patchListing={patchListing}/>
 })
 
 

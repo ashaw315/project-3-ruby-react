@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
-function Card({ list, handleDelete, onAdd }){
+function Card({ list, handleDelete, onAdd, patchListing }){
+
+const [togglePosition, setTogglePostion] = useState(false)
     
 const { job_title, hourly_rate, start_date, end_date, id, hired } = list
 
 const path = `/listings/${id}`;
+
+function handleToggle(){
+    setTogglePostion(!togglePosition)
+}
 
     return (
         <div>
@@ -17,7 +23,8 @@ const path = `/listings/${id}`;
             <button> Apply </button>
             <button> Bookmark in Calendar </button>
             <button onClick={() => handleDelete(id)}> Delete </button>
-            <button> Position Open </button>
+            {list.hired? <button onClick={()=> patchListing(list)}>Position Filled</button> : <button onClick={()=> patchListing(list)}>Position Open </button>}
+            {/* <button onClick={handleToggle}> {togglePosition ? "Position Open" : "Position Filled"}</button> */}
             <Link to={path}>
                 <button> See Details </button>
             </Link>
