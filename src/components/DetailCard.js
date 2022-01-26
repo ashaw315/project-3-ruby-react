@@ -25,7 +25,7 @@ const { id } = useParams();
 }, [id]);
 
 // useEffect(() => {
-//   fetch(`http://localhost:9292/applicants/${id}`)
+//   fetch(`http://localhost:9292/listings/applicants/${id}`)
 //   .then((r) => r.json())
 //   .then((applicants) => {
 //       setApplicants(applicants);
@@ -68,6 +68,29 @@ const all_reviews = listing.reviews.map((review) => {
     )
   })
 
+  const all_applicants = listing.applicants.map((applicant) => {
+    return (
+      <div className='test-position' key={applicant.id}>
+               <Accordion className="accordian-detail">
+                  <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                  >
+                  <Typography><strong>{applicant.user.name}</strong></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      <p>Current Position: {applicant.user.position}</p>
+                      <p>Skill: {applicant.user.user_despcription}</p>  
+                      <p>Hobby: {applicant.user.skills}</p>  
+                      <p>Favorite Fruit: {applicant.user.password}</p>    
+                    </Typography>
+                  </AccordionDetails>
+              </Accordion>
+            </div>
+    )
+  })
+
     return (
     <section className="whole-detail">
       <div className="project-image">
@@ -100,7 +123,7 @@ const all_reviews = listing.reviews.map((review) => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <p>asd</p>  
+                <p>{all_applicants}</p>  
               </Typography>
             </AccordionDetails>
            </Accordion>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from './Card'
 
-function Listings() {
+function Listings({ onAdd }) {
 const [listings, setListings] = useState([])
 const [formData, setFormData] = useState({
     job_title: "",
@@ -55,7 +55,7 @@ const handleDelete = (id) => {
 
 
 const mappedListings = listings.map((list) => {
-    return <Card list={list} key={list.id} handleDelete={handleDelete}/>
+    return <Card list={list} key={list.id} handleDelete={handleDelete} onAdd={onAdd}/>
 })
 
 

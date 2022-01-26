@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-function Card({ list, handleDelete }){
+function Card({ list, handleDelete, onAdd }){
     
 const { job_title, hourly_rate, start_date, end_date, id, hired } = list
 
 const path = `/listings/${id}`;
-
-function Card({ list, handleBookmarked, onAdd }){
-const { job_title, hourly_rate, start_date, end_date } = list
 
     return (
         <div>
@@ -26,9 +23,8 @@ const { job_title, hourly_rate, start_date, end_date } = list
             </Link>
             
             <button onClick={() => onAdd(list)}> Bookmark </button>
-            <button> See Details </button>
         </div>
-    )}
+    )
 }
 
 export default Card;

@@ -42,17 +42,17 @@ const localizer = dateFnsLocalizer({
 // ]
 
 function CalendarComp({ eventItems }) {
-    const events = []
-     {eventItems.map(event => {
-        return {
-            title: event.job_title,
-            allDay: true,
-            start: new Date(event.start_date),
-            end: null
-            }
-            ({event, ...events })
-    })}
-    console.log(events)
+    // const events = []
+    //  {eventItems.map(event => {
+    //     return {
+    //         title: event.job_title,
+    //         allDay: true,
+    //         start: new Date(event.start_date),
+    //         end: null
+    //         }
+    //         ({event, ...events })
+    // })}
+    // console.log(events)
     return (
         <div>
             <div id='cal-info'>
@@ -72,7 +72,7 @@ function CalendarComp({ eventItems }) {
             </div>
 
             <div id='calendar'>
-                <Calendar localizer={localizer} events ={events} startAccessor="start" endAccessor="end" style={{height:"600px", width: "1100px", marginLeft:"190px", }}/>
+                <Calendar localizer={localizer} startAccessor="start" endAccessor="end" style={{height:"600px", width: "1100px", marginLeft:"190px", }}/>
             </div>
         </div>
     )
