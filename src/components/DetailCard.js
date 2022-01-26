@@ -15,7 +15,7 @@ const [isLoaded, setIsLoaded] = useState(false);
 const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:9292/listing/${id}`)
+    fetch(`http://localhost:9292/listings/${id}`)
     .then((r) => r.json())
     .then((listing) => {
         setListing(listing);
@@ -23,32 +23,77 @@ const { id } = useParams();
     });
 }, [id]);
 
+
+
 if (!isLoaded) return <h2>Loading...</h2>;
 
+const {job_title, hourly_rate, start_date, end_date, job_description, reviews, rating} = listing
+
+console.log(listing)
+
+const path = `/users/${id}`;
+
+const all_reviews = listing.reviews.map((review) => {
     return (
-        <section className="whole-detail">
-        <div className="project-image">
+            <div className='test-position' key={review.id}>
+               <Accordion className="accordian-detail">
+                  <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                  >
+                  <Typography><strong>{review.user.name}</strong></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      <p>Current Position: {review.user.position}</p>
+                      <p>Skill: {review.user.user_despcription}</p>  
+                      <p>Hobby: {review.user.skills}</p>  
+                      <p>Favorite Fruit: {review.user.password}</p>    
+                    </Typography>
+                  </AccordionDetails>
+              </Accordion>
+              <li>Comment: {review.comment}</li>
+              <li>Rating: {review.rating}</li>
+            </div>
+    )
+  })
+
+    return (
+    <section className="whole-detail">
+      <div className="project-image">
+        <h1>{job_title}</h1>
         </div>
-        <div className="furn-details">
-          <p className="price-detail">name</p>
-          <p className="price-detail">$price</p>
-          <p>by </p>
-          <p>cat</p>
-          <p>mat</p>
+        <div >
+          <p>{start_date}</p>
+          <p>${hourly_rate}</p>
+          <p>{job_description}</p>
+          {/* <p  className='test-position'>{all_reviews}</p> */}
           <Accordion className="accordian-detail">
             <AccordionSummary
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <Typography><strong>About</strong></Typography>
+            <Typography><strong>Reviews +</strong></Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography>
-                <p>ab</p>
-                </Typography>
-        </AccordionDetails>
-      </Accordion>
-          <button>Add To Cart</button>
+              <Typography>
+                <p>{all_reviews}</p> 
+              </Typography>
+            </AccordionDetails>
+           </Accordion>
+           <Accordion className="accordian-detail">
+            <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <Typography><strong>Applicants +</strong></Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <p>placeholder</p>  
+              </Typography>
+            </AccordionDetails>
+           </Accordion>
           <div>
       </div>
     </div>
@@ -56,3 +101,7 @@ if (!isLoaded) return <h2>Loading...</h2>;
     )
 }
   export default DetailCard;
+
+
+
+ 
