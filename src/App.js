@@ -68,6 +68,7 @@ const onAdd = (listings) => {
   } else {
     setEventItems([...eventItems, { ...listings, qty: 1 }]);
   }
+  alert("Added to Calendar!")
 };
   
   return (
