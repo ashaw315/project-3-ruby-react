@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import CalendarComp from './components/CalendarComp';
-import Chat from './components/Chat';
+import Apply from './components/Apply';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import DetailCard from './components/DetailCard';
@@ -45,7 +45,7 @@ function App() {
 //     })
 // }
 
-  const events = []
+
 
 //   function handleBookmarked(listings){
 //     const newEvent = {
@@ -79,7 +79,7 @@ const onAdd = (listings) => {
         <Route path="/listings/:id" element={<DetailCard listings={listings}/>} />
         <Route path="/" element={<Home />} /> 
         <Route path="/listings" element={<Listings listings={listings} onAdd={onAdd}/>} />
-        <Route path="/chat" element={<Chat />} />
+        <Route path="/apply" element={<Apply listings={listings}/>} />
         <Route path="/calendar" element={<CalendarComp eventItems={eventItems} onAdd={onAdd}/>} />
         <Route path="/profile" element={<Profile />} />
       </Routes>

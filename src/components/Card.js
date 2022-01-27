@@ -21,7 +21,6 @@ function handleToggle(){
             <p>{end_date}</p>
             <p>{hired ? "Position Filled" : "Position Open"}</p>
             <button> Apply </button>
-            <button> Bookmark in Calendar </button>
             <button onClick={() => handleDelete(id)}> Delete </button>
             {list.hired? <button onClick={()=> patchListing(list)}>Position Filled</button> : <button onClick={()=> patchListing(list)}>Position Open </button>}
             {/* <button onClick={handleToggle}> {togglePosition ? "Position Open" : "Position Filled"}</button> */}
@@ -29,7 +28,7 @@ function handleToggle(){
                 <button> See Details </button>
             </Link>
             
-            <button onClick={() => onAdd(list)}> Bookmark </button>
+            <button onClick={() => onAdd(list)}> Bookmark In Calendar </button>
         </div>
     )
 }

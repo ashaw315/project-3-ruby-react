@@ -15,8 +15,8 @@ function Navbar() {
                     <button variant="text" color='yellow'>Listings</button>
                 </Link>  {" "}
 
-                <Link to="/chat" style={{ textDecoration: 'none' }}>
-                    <button variant="text" color='red'>Chat</button>
+                <Link to="/apply" style={{ textDecoration: 'none' }}>
+                    <button variant="text" color='red'>Apply</button>
                 </Link> {" "}
 
                 <Link to="/calendar" style={{ textDecoration: 'none' }}>
