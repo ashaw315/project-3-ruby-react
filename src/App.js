@@ -72,6 +72,7 @@ const onAdd = (listings) => {
   
   return (
     <div className="App">
+      <h1 className='header-title'>HANDLED</h1>
       <Navbar/>
       <Routes>
         <Route/>

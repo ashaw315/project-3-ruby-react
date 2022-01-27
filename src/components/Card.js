@@ -1,5 +1,28 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
+import styled from "styled-components"
+
+const ButtonA = styled.button`
+    background: white;
+    padding: 10px;
+    margin-right: 20px;
+    border: 2px grey;
+    transition: 500ms ease;
+    color: black;
+    text-decoration: none;
+    font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: 2px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+
+    
+
+    &:hover {
+        background: grey;
+        color: white;
+        border: 2px solid rgba(0, 0, 0, 1);
+        border-radius: 10px;
+    }
+    `;
 
 function Card({ list, handleDelete, onAdd, patchListing }){
 
@@ -14,21 +37,22 @@ function handleToggle(){
 }
 
     return (
-        <div>
-            <h2>{job_title}</h2>
+        <div className='card'>
+            <h2 className='title-card'>{job_title}</h2>
             <p>${hourly_rate}</p>
             <p>{start_date}</p>
             <p>{end_date}</p>
             <p>{hired ? "Position Filled" : "Position Open"}</p>
-            <button> Apply </button>
-            <button onClick={() => handleDelete(id)}> Delete </button>
-            {list.hired? <button onClick={()=> patchListing(list)}>Position Filled</button> : <button onClick={()=> patchListing(list)}>Position Open </button>}
-            {/* <button onClick={handleToggle}> {togglePosition ? "Position Open" : "Position Filled"}</button> */}
-            <Link to={path}>
-                <button> See Details </button>
-            </Link>
-            
-            <button onClick={() => onAdd(list)}> Bookmark In Calendar </button>
+            <div className='card-buttons'>
+                <ButtonA> Apply </ButtonA>
+                <ButtonA onClick={() => handleDelete(id)}> Delete </ButtonA>
+                {list.hired? <ButtonA onClick={()=> patchListing(list)}>Position Filled</ButtonA> : <ButtonA onClick={()=> patchListing(list)}>Position Open </ButtonA>}
+                {/* <button onClick={handleToggle}> {togglePosition ? "Position Open" : "Position Filled"}</button> */}
+                <Link to={path}>
+                    <ButtonA> See Details </ButtonA>
+                </Link>
+                <ButtonA onClick={() => onAdd(list)}> Bookmark in Calendar </ButtonA>
+            </div>
         </div>
     )
 }
