@@ -24,6 +24,8 @@ const ButtonA = styled.button`
     }
     `;
 
+    
+
 function Card({ list, handleDelete, onAdd, patchListing }){
 
 const [togglePosition, setTogglePostion] = useState(false)
@@ -51,7 +53,7 @@ function handleToggle(){
                 <Link to={path}>
                     <ButtonA> See Details </ButtonA>
                 </Link>
-                <ButtonA onClick={() => onAdd(list)}> Bookmark in Calendar </ButtonA>
+                <ButtonA onClick={() => onAdd(list)} > Bookmark in Calendar </ButtonA>
             </div>
         </div>
     )
