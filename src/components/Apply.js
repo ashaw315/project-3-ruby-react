@@ -22,6 +22,16 @@ function Apply ( {listings} ) {
     function handleSubmit(e) {
         e.preventDefault();
         postUser(formData)
+        setFormData({
+            name: "",
+            password: "",
+            position: "",
+            user_despcription: "",
+            skills: "",
+            favorite_quote: "",
+            favorite_game: "",
+            listing: ""
+        })
     }
 
     useEffect(() => {
@@ -49,77 +59,77 @@ function Apply ( {listings} ) {
     return (
     <div>
         <h2> Apply for A Position </h2>
-        <form className="new-Listing" onSubmit={handleSubmit}>
+        <form className="new-listing" onSubmit={handleSubmit}>
                     <label>
                     Full Name:
+                    </label>
                     <input 
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}/>
-                    </label>
                     <label>
                     Favorite Fruit:
+                    </label>
                      <input 
                     type="text"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Previous Position:
+                    </label>
                      <input 
                     type="text"
                     name="position"
                     value={formData.position}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Skills:
+                    </label>
                      <input 
                     type="text"
                     name="user_despcription"
                     value={formData.user_despcription}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Hobbies:
+                    </label>
                      <input 
                     type="text"
                     name="skills"
                     value={formData.skills}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Favorite Quote:
+                    </label>
                      <input 
                     type="text"
                     name="favorite_quote"
                     value={formData.favorite_quote}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Favorite Game:
+                    </label>
                      <input 
                     type="text"
                     name="favorite_game"
                     value={formData.favorite_game}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Choose Listing to Apply:
+                    </label>
                     <select name="listing" value={formData.listing} onChange={handleChange}>
                         <option>Select Listing</option>
                         {listings.map(list => 
                         <option value = {list.id}>{list.job_title}</option> )}
                     </select>
-                    </label>
                     <input type="submit" value="Submit" />
                 </form>
     </div>
