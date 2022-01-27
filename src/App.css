@@ -82,6 +82,7 @@
   border: 2px solid rgba(0, 0, 0, 0.6);
   border-radius: 20px;
   transition: 500ms ease;
+  background-color: rgb(255, 255, 255);
 }
 
 .card:hover {
@@ -144,4 +145,20 @@ margin-left: 20px;
   padding-left: 10px;
   background-color:red;
   color: white;
+}
+
+.whole-detail{
+  top: 150px;
+  text-align: center;
+  color: azure;
+  margin-top: 10px;
+  padding: 10px;
+  letter-spacing: 5px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  border: 2px solid rgb(236, 100, 75);
+  border-radius: 20px;
+  transition: 500ms ease;
+  background-color: rgb(255, 86, 56);
 }
