@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
-// import styled from "styled-components"
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-// import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 function DetailCard(){
 const [listing, setListing] = useState(null)
 const [isLoaded, setIsLoaded] = useState(false);
-// const [applicants, setApplicants] = useState(null)
+const [comments, setComments] = useState(null)
+const [formData, setFormData] = useState({
+  review_name: "",
+  comment: "",
+  rating: 0, 
+  listing: ""
+})
+
+const handleChange = (e) => {
+  setFormData({...formData, [e.target.name]: e.target.value})
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  postReview(formData)
+  setFormData({
+    review_name: "",
+    comment: "",
+    rating: 0
+  })
+}
+
+console.log(formData)
+
 
 const { id } = useParams();
 
@@ -24,20 +45,32 @@ const { id } = useParams();
     });
 }, [id]);
 
-// useEffect(() => {
-//   fetch(`http://localhost:9292/listings/applicants/${id}`)
-//   .then((r) => r.json())
-//   .then((applicants) => {
-//       setApplicants(applicants);
-//   });
-// }, [id]);
 
+
+useEffect(() => {
+  fetch('http://localhost:9292/reviews')
+  .then(r => r.json())
+  .then(data => setComments(data))
+}, [])
+
+const postReview = (review) => {
+fetch('http://localhost:9292/reviews', {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(review)
+})
+.then(r => r.json())
+.then(newReview => {
+  setComments([newReview,...comments])
+})
+}
 
 if (!isLoaded) return <h2>Loading...</h2>;
 
 const {job_title, hourly_rate, start_date, end_date, job_description, reviews, rating} = listing
 
-// const { user_id } = applicants
 
 console.log(listing)
 
@@ -129,6 +162,41 @@ const all_reviews = listing.reviews.map((review) => {
            </Accordion>
           <div>
       </div>
+    </div>
+    
+    <div>
+        
+        <form className="new-listing" onSubmit={handleSubmit}>
+                  <aside value={formData.listing}>Listing</aside> 
+                    <label>
+                    Full Name:
+                    </label>
+                    <input 
+                    type="text"
+                    name="review_name"
+                    value={formData.review_name}
+                    onChange={handleChange}/>
+                    <label>
+                    Comment:
+                    </label>
+                     <input 
+                    type="text"
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleChange}
+                    />
+                    <label>
+                    Rating:
+                    </label>
+                     <input 
+                    type="text"
+                    name="rating"
+                    value={formData.rating}
+                    onChange={handleChange}
+                    />
+                    <input type="submit" value="Submit" />
+                    
+                </form>
     </div>
   </section>
     )

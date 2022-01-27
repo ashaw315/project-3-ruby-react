@@ -21,29 +21,8 @@ const localizer = dateFnsLocalizer({
     locales
 })
 
-// const events = [
-//     {
-//         title: "Meeting",
-//         allDay: true,
-//         start: new Date(2022, 6, 0),
-//         end : new Date(2022, 6, 0)
-
-//     },
-//     {
-//         title: "Vacation",
-//         start: new Date(2022, 6, 0),
-//         end: new Date(2022, 6, 0)
-//     },
-//     {
-//         title: "Conference",
-//         start: new Date(2022, 6, 0),
-//         end: new Date(2022, 6, 0)
-//     }
-// ]
 
 function CalendarComp({ eventItems }) {
-    
-    // console.log(eventItems)
     
     const newEvents = eventItems.map(event => {
         const newDate = new Date(event.start_date)
