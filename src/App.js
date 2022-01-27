@@ -72,13 +72,14 @@ const onAdd = (listings) => {
   
   return (
     <div className="App">
+      <h1 className='header-title'>HANDLED</h1>
       <Navbar/>
       <Routes>
         <Route/>
         <Route path="/users/:id" element={<UserCard />} />
         <Route path="/listings/:id" element={<DetailCard listings={listings}/>} />
         <Route path="/" element={<Home />} /> 
-        <Route path="/listings" element={<Listings listings={listings} onAdd={onAdd}/>} />
+        <Route path="/listings" element={<Listings onAdd={onAdd}/>} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/calendar" element={<CalendarComp eventItems={eventItems} onAdd={onAdd}/>} />
         <Route path="/profile" element={<Profile />} />

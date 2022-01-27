@@ -1,5 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Card from './Card'
+import styled from "styled-components"
+
+const InputA = styled.input`
+    background: white;
+    padding: 10px;
+    margin-right: 20px;
+    border: 2px grey;
+    transition: 500ms ease;
+    color: black;
+    text-decoration: none;
+    font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: 2px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+
+    
+
+    &:hover {
+        background: grey;
+        color: white;
+        border: 2px solid rgba(0, 0, 0, 1);
+        border-radius: 10px;
+    }
+    `;
 
 function Listings({ onAdd }) {
 const [listings, setListings] = useState([])
@@ -19,8 +42,18 @@ const handleChange = (e) => {
 
 function handleSubmit(e) {
     e.preventDefault();
-    postListing(formData)
+    postListing(formData);
+    setFormData ({
+        job_title: "",
+        job_description: "",
+        hourly_rate: 0,
+        start_date: "",
+        end_date: "",
+        hired: "Select Hired"
+    })
+    
 }
+
 
 // Get all Listings
 useEffect(() => {
@@ -59,85 +92,97 @@ const patchListing = (listing) => {
         headers: {
             "Content-Type": "application/json",
         }, 
-        body: JSON.stringify({...listing, hired:false})
+        body: JSON.stringify({...listing, hired: !listing.hired})
     })
     .then(r => r.json())
     .then(data => {
+        
         setListings(listings.map(l => {
+            console.log(l)
             if(listing.id === data.id){
                 return data
             } else {
                 return l
             }
         }))
-    })
+    }).catch((error) => {
+        console.error('Error',error);
+    });
 } 
 
 
 const mappedListings = listings.map((list) => {
+    console.log(listings.length)
     return <Card list={list} key={list.id} handleDelete={handleDelete} onAdd={onAdd} patchListing={patchListing}/>
 })
 
 
     return (
-        <div>
-            <h1>This is the Listings</h1>
-                <form className="new-Listing" onSubmit={handleSubmit}>
+        <div className="listings-comp">
+            <h2 className="listing-header">Add A Listing</h2>
+            <div>
+                <form className="new-listing" onSubmit={handleSubmit}>
                     <label>
                     Job Title:
+                    </label>
                     <input 
                     type="text"
                     name="job_title"
                     value={formData.job_title}
                     onChange={handleChange}/>
-                    </label>
                     <label>
                     Job Description:
+                    </label>
                      <input 
                     type="text"
                     name="job_description"
                     value={formData.job_description}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Hourly Rate:
+                    </label>
                      <input 
                     type="text"
                     name="hourly_rate"
                     value={formData.hourly_rate}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Start Date (yyyy/mm/dd):
+                    </label>
                      <input 
                     type="text"
                     name="start_date"
                     value={formData.start_date}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     End Date (yyyy/mm/dd):
+                    </label>
                      <input 
                     type="text"
                     name="end_date"
                     value={formData.end_date}
                     onChange={handleChange}
                     />
-                    </label>
                     <label>
                     Hired:
+                    </label>
                     <select name="hired" value={formData.hired} onChange={handleChange}>
                         <option>Select Hired</option>
                         <option value={true}>True</option>
                         <option value={false}>False</option>
                     </select>
-                    </label>
-                    <input type="submit" value="Submit" />
+                    <br />
+                    <InputA type="submit" value="Submit" />
+                    <br />
                 </form>
-            {mappedListings}
+                </div>
+                <div>
+                    <h2 className="listings-title">LISTINGS</h2>
+                </div>
+            <ul className="cards">{mappedListings}</ul>
         </div>
     )
 }
