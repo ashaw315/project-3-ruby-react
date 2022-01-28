@@ -46,9 +46,9 @@ function Navbar() {
                     <ButtonA variant="text" color='green'>Calendar</ButtonA>
                 </Link>  {" "}
 
-                <Link to="/profile" style={{ textDecoration: 'none' }}>
+                {/* <Link to="/profile" style={{ textDecoration: 'none' }}>
                     <ButtonA variant="text" color='green'>Profile</ButtonA>
-                </Link>
+                </Link> */}
           </nav>
     )
 }

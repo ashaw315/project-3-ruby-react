@@ -17,6 +17,7 @@ const [formData, setFormData] = useState({
   listing: ""
 })
 
+
 const handleChange = (e) => {
   setFormData({...formData, [e.target.name]: e.target.value})
 }
@@ -27,11 +28,12 @@ function handleSubmit(e) {
   setFormData({
     review_name: "",
     comment: "",
-    rating: 0
+    rating: 0,
+    listing: ""
   })
 }
 
-console.log(formData)
+
 
 
 const { id } = useParams();
@@ -67,12 +69,12 @@ fetch('http://localhost:9292/reviews', {
 })
 }
 
+
 if (!isLoaded) return <h2>Loading...</h2>;
 
 const {job_title, hourly_rate, start_date, end_date, job_description, reviews, rating} = listing
 
-
-console.log(listing)
+const postId = listing.id
 
 const path = `/users/${id}`;
 
@@ -129,7 +131,7 @@ const all_reviews = listing.reviews.map((review) => {
       <div className="project-image">
         <h1>{job_title}</h1>
         </div>
-        <div >
+        <div>
           <p>{start_date}</p>
           <p>${hourly_rate}</p>
           <p>{job_description}</p>
@@ -160,44 +162,9 @@ const all_reviews = listing.reviews.map((review) => {
               </Typography>
             </AccordionDetails>
            </Accordion>
+           </div>
           <div>
       </div>
-    </div>
-    
-    <div>
-        
-        <form className="new-listing" onSubmit={handleSubmit}>
-                  <aside value={formData.listing}>Listing</aside> 
-                    <label>
-                    Full Name:
-                    </label>
-                    <input 
-                    type="text"
-                    name="review_name"
-                    value={formData.review_name}
-                    onChange={handleChange}/>
-                    <label>
-                    Comment:
-                    </label>
-                     <input 
-                    type="text"
-                    name="comment"
-                    value={formData.comment}
-                    onChange={handleChange}
-                    />
-                    <label>
-                    Rating:
-                    </label>
-                     <input 
-                    type="text"
-                    name="rating"
-                    value={formData.rating}
-                    onChange={handleChange}
-                    />
-                    <input type="submit" value="Submit" />
-                    
-                </form>
-    </div>
   </section>
     )
 }

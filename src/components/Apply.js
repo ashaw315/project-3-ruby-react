@@ -1,5 +1,28 @@
 import React, {useState} from "react";
 import { useEffect } from "react/cjs/react.development";
+import styled from "styled-components"
+
+const InputA = styled.input`
+    background: white;
+    padding: 10px;
+    margin-right: 20px;
+    border: 2px grey;
+    transition: 500ms ease;
+    color: black;
+    text-decoration: none;
+    font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: 2px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+
+    
+
+    &:hover {
+        background: grey;
+        color: white;
+        border: 2px solid rgba(0, 0, 0, 1);
+        border-radius: 10px;
+    }
+    `;
 
 
 function Apply ( {listings} ) {
@@ -57,8 +80,8 @@ function Apply ( {listings} ) {
 
 
     return (
-    <div>
-        <h2> Apply for A Position </h2>
+    <div className="listings-comp">
+        <h2 className="listing-header"> Apply for A Position </h2>
         <form className="new-listing" onSubmit={handleSubmit}>
                     <label>
                     Full Name:
@@ -130,8 +153,9 @@ function Apply ( {listings} ) {
                         {listings.map(list => 
                         <option value = {list.id}>{list.job_title}</option> )}
                     </select>
-                    <input type="submit" value="Submit" />
+                    <InputA type="submit" value="Submit" />
                 </form>
+                <h2 className="listings-titles">APPLY</h2>
     </div>
        
 

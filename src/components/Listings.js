@@ -109,6 +109,7 @@ const patchListing = (listing) => {
     }).catch((error) => {
         console.error('Error',error);
     });
+    window.location.reload(false);
 } 
 
 
