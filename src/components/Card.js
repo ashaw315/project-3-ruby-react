@@ -58,7 +58,7 @@ function handleToggle(){
                 <Link to={path}>
                     <ButtonA> See Details </ButtonA>
                 </Link>
-                <ButtonA className="bubbly-button" onClick={() => onAdd(list)}> Bookmark in Calendar </ButtonA>
+                <ButtonA onClick={() => onAdd(list)}> Bookmark in Calendar </ButtonA>
             </div>
         </div>
     )
