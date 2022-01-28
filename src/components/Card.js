@@ -25,6 +25,13 @@ const ButtonA = styled.button`
     }
     `;
 
+    
+const Div = styled.div`
+padding: 4px 16px;
+background: ${props => (props.isHired ? "red" : "white")}; 
+color: ${props => (props.isHired ? "white" : "red")};
+`;
+
 function Card({ list, handleDelete, onAdd, patchListing }){
 
 const [togglePosition, setTogglePostion] = useState(false)
@@ -35,14 +42,8 @@ const path = `/listings/${id}`;
 
 const path_apply = '/apply';
 
-function handleToggle(){
-    setTogglePostion(!togglePosition)
-}
-
-
-
     return (
-        <div className='card'>
+        <Div className='card' isHired={hired}>
             <h2 className='title-card'>{job_title}</h2>
             <p>${hourly_rate}</p>
             <p>{start_date}</p>
@@ -60,7 +61,7 @@ function handleToggle(){
                 </Link>
                 <ButtonA onClick={() => onAdd(list)}> Bookmark in Calendar </ButtonA>
             </div>
-        </div>
+        </Div>
     )
 }
 
