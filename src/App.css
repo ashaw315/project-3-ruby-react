@@ -158,9 +158,8 @@ margin-left: 20px;
   letter-spacing: 5px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   grid-template-rows: auto 1fr auto;
-  position: relative;
   border: 2px solid rgb(236, 100, 75);
-  border-radius: 20px;
+  border-radius: 10px;
   transition: 500ms ease;
   background-color: rgb(255, 86, 56);
 }
@@ -202,4 +201,17 @@ margin-left: 20px;
   margin-top: 70px;
   transform:scaleY(2.7);
   text-decoration: underline;
+}
+
+.new-review {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  text-align: justify;
+  margin: auto;
+}
+
+.new-review label {
+  /* margin-bottom: 1rem; */
+  margin-top: 20px;
 }
